@@ -1,3 +1,43 @@
-html, body {
-  margin: 20px;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+svg {
+  flex: 0 0 auto;
+  border: 1px solid black;
+}
+
+.frame {
+  fill: #000;
+  stroke: none;
+}
+
+.meter {
+  fill: #FFF;
+  stroke: none;
+}
+
+.gem {
+  fill: url(#coneImage);
+  stroke: none;
+}
+
+.portal {
+  flex: 0 0 auto;
+  border: 1px solid black;
+  background: black;
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  margin-left: 20px;
 }

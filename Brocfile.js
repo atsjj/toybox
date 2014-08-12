@@ -2,7 +2,10 @@
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-var app = new EmberApp();
+var app = new EmberApp({
+  es3Safe: false,
+  wrapInEval: false
+});
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
@@ -16,5 +19,8 @@ var app = new EmberApp();
 // modules that you would like to import into your application
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
+
+app.import('vendor/d3/d3.js');
+app.import('vendor/Proton/build/proton-1.0.0.js');
 
 module.exports = app.toTree();
