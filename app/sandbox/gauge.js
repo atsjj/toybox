@@ -88,15 +88,35 @@ var gem = kg.append('svg:circle')
   .attr('r', 3)
   .attr('class', 'gem');
 
-ng.call(spin, 3000, false);
+ng.call(spin, 30000, false);
+meter.call(ark, 30000, false);
 
 function spin(selection, duration, back) {
   selection.transition()
-    .ease("bounce")
+    .ease('bounce')
     .duration(duration / 2)
-    .attrTween("transform", function() {
-        return (back) ? d3.interpolateString("rotate(-135)", "rotate(90)") : d3.interpolateString("rotate(90)", "rotate(-135)");
+    .attrTween('transform', function() {
+      var b = (back) ? -135 : 90;
+      var e = (back) ? 90 : -135;
+      return d3.interpolateString('rotate(' + b + ')', 'rotate(' + e + ')');
     });
 
   setTimeout(function() { spin(selection, duration, !back); }, duration);
+}
+
+function ark(selection, duration, back) {
+  selection.transition()
+    .ease('bounce')
+    .duration(duration / 2)
+    .attrTween('d', function(d) {
+      var b = (back) ? -135 : 90;
+      var e = (back) ? 90 : -135;
+      var i = d3.interpolateNumber(r(b), r(e));
+
+      return function(t) {
+        return meterArc.endAngle(i(t))();
+      };
+    });
+
+  setTimeout(function() { ark(selection, duration, !back); }, duration);
 }
